@@ -13,7 +13,7 @@
 
 # Example binary for using the client
 example
-form3interview
+accountapi-client
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

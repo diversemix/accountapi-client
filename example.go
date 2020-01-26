@@ -9,8 +9,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/diversemix/form3interview/accountclient"
-	"github.com/diversemix/form3interview/accountclient/entities"
+	"github.com/diversemix/accountapi-client/accountclient"
+	"github.com/diversemix/accountapi-client/accountclient/entities"
 )
 
 func main() {

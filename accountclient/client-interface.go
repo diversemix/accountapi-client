@@ -1,6 +1,6 @@
 package accountclient
 
-import "github.com/diversemix/form3interview/accountclient/entities"
+import "github.com/diversemix/accountapi-client/accountclient/entities"
 
 // ClientInterface  The interface for the client
 type ClientInterface interface {

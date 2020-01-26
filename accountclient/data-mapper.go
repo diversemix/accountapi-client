@@ -3,7 +3,7 @@ package accountclient
 import (
 	"encoding/json"
 
-	"github.com/diversemix/form3interview/accountclient/entities"
+	"github.com/diversemix/accountapi-client/accountclient/entities"
 )
 
 type payloadAccount struct {

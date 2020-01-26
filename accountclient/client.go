@@ -3,7 +3,7 @@ package accountclient
 import (
 	"errors"
 
-	"github.com/diversemix/form3interview/accountclient/entities"
+	"github.com/diversemix/accountapi-client/accountclient/entities"
 	"github.com/google/uuid"
 )
 

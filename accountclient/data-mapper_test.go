@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/diversemix/form3interview/accountclient/entities"
+	"github.com/diversemix/accountapi-client/accountclient/entities"
 )
 
 func TestAccountToJSON(t *testing.T) {

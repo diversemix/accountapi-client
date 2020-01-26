@@ -1,12 +1,10 @@
-# form3interview
-Interview with Form3, golang client for AccountsAPI - by Peter Hooper
-
+# accountapi-client
+Example Client for an account API in golang withBDD
 
 ## Description
 
-This repository contains the code to complete the [interview question by Form3](https://github.com/form3tech-oss/interview-accountapi).
 In summary it is a `go` client for the accounts API [specified here](https://api-docs.form3.tech/api.html#organisation-accounts).
-This is the first time I've written any commercial grade code in golang... I'm also used to paired/mob programming so this has been a fun and useful learning exercise - looking forward for feedback.
+This is the first time I've written any commercial grade code in golang... I'm also used to paired/mob programming so this has been a fun and useful learning exercise.
 
 ## Quick Start
 
@@ -26,17 +24,17 @@ make start
 ### In you own application
 
 This package is designed to be used in another `go` application,
-to this end there is an [example.go](https://github.com/diversemix/form3interview/blob/master/example.go) in the root of the folder.
+to this end there is an [example.go](https://github.com/diversemix/accountapi-client/blob/master/example.go) in the root of the folder.
 This can be build and run as is designed to be used as a reference implementation.
 
-The code below, shows the minimum code required to create the client. The `accountclient` package also exposes a `New()` method to allow the client to use a custom logger that uses the [ClientLogger](https://github.com/diversemix/form3interview/blob/master/accountclient/client.go) interface and a custom repository that uses [Repository](https://github.com/diversemix/form3interview/blob/master/accountclient/repository.go) interface. In the implementation below it uses the `NewRestClient()` method to create the default REST implementation of the client.
+The code below, shows the minimum code required to create the client. The `accountclient` package also exposes a `New()` method to allow the client to use a custom logger that uses the [ClientLogger](https://github.com/diversemix/accountapi-client/blob/master/accountclient/client.go) interface and a custom repository that uses [Repository](https://github.com/diversemix/accountapi-client/blob/master/accountclient/repository.go) interface. In the implementation below it uses the `NewRestClient()` method to create the default REST implementation of the client.
 
 ```{go}
 package main
 
 import (
 	"log"
-	"github.com/diversemix/form3interview/accountclient"
+	"github.com/diversemix/accountapi-client/accountclient"
 )
 
 func main() {
@@ -47,7 +45,7 @@ func main() {
 
 ### During Development
 
-The [Makefile](https://github.com/diversemix/form3interview/blob/master/Makefile) has been designed to help development. Running the command `make` will list all the commands and a brief description as a reminder. They are explained in detail below:
+The [Makefile](https://github.com/diversemix/accountapi-client/blob/master/Makefile) has been designed to help development. Running the command `make` will list all the commands and a brief description as a reminder. They are explained in detail below:
 
 - `make start` - This is equivalent to `docker-compose up`, but with the added step of stopping any currently running services beforehand. Therefore this is recommended over using docker-compose directly.
 - `make start-services` - This just starts the supporting services for running the BDD tests. Handy to leave these running when you are developing the BDD tests.
@@ -91,10 +89,10 @@ go get -u github.com/nathany/looper
 1. I was keen to ensure that the client that was to be created would be as idiomatic and easy to use for the developer consuming it. I started with the file `example.go` and have attempted to make it as easy to use as possible. Having learnt about BDD along the way, I can see the advantage of starting here - I am now a convert :)
 
 2. For the purposes of the *"Single Responsibility Principle"* the following
-    - [RestRepository](https://github.com/diversemix/form3interview/blob/master/accountclient/rest-repository.go) is responsible for all network transport (the only file using `net/http`)
-    - [entities/account.go](https://github.com/diversemix/form3interview/blob/master/accountclient/entities/account.go) is responsible for representing the entity that the API deals with. Validation has been used within this type given the documentation of the API. Again this is to *fail fast* so the validation can fail client-side before having to round-trip with all the network latency involved with that.
-    - [data-mapper.go](https://github.com/diversemix/form3interview/blob/master/accountclient/data-mapper.go) - is responsible for (un)marshalling the `Account` objects to/from `JSON` - this was a term borrowed from DDD, where effectively JSON is being used for the DTO.
-    - [client.go](https://github.com/diversemix/form3interview/blob/master/accountclient/client.go) has the responsibility solely for orchestration between the `Interface` and the `Repository` selected on creation.
+    - [RestRepository](https://github.com/diversemix/accountapi-client/blob/master/accountclient/rest-repository.go) is responsible for all network transport (the only file using `net/http`)
+    - [entities/account.go](https://github.com/diversemix/accountapi-client/blob/master/accountclient/entities/account.go) is responsible for representing the entity that the API deals with. Validation has been used within this type given the documentation of the API. Again this is to *fail fast* so the validation can fail client-side before having to round-trip with all the network latency involved with that.
+    - [data-mapper.go](https://github.com/diversemix/accountapi-client/blob/master/accountclient/data-mapper.go) - is responsible for (un)marshalling the `Account` objects to/from `JSON` - this was a term borrowed from DDD, where effectively JSON is being used for the DTO.
+    - [client.go](https://github.com/diversemix/accountapi-client/blob/master/accountclient/client.go) has the responsibility solely for orchestration between the `Interface` and the `Repository` selected on creation.
 
 3. Interfaces, there are the following interfaces to use the SIP interface-segregation principle.
 
@@ -111,11 +109,3 @@ Normally I would ensure there are the three level of tests are complete before a
 3. End-to-End Tests
 
 Without a staging environment or equivalent it is impossible to do (3). I have completed what I think is a good "first pass" at the unit tests for this interview - obviously I could carry on! In terms of integration tests, as we have the container available to us, I have attempted to do these in BDD style using godog. This is the first time I have used this technique, again would appreciate any feedback. Thanks!
-
-## Still to do
-
-- Validation of bic and bank_id in the entity?
-- Improve unit tests - there are many tests that need more cases, particularly failure cases.
-- setup up CI/CD with github actions.
-- Improve BDD tests - more reading first... I'm a bit worried at the size of the file `integration_tests.go`
-- Improve Account to include all the other possible attributes it can contain (see docs).

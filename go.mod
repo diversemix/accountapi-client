@@ -1,4 +1,4 @@
-module github.com/diversemix/form3interview
+module github.com/diversemix/accountapi-client
 
 go 1.13
 
