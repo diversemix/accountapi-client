@@ -1,0 +1,5 @@
+FROM form3tech/interview-accountapi:v1.0.0-4-g63cf8434
+
+COPY ./new-entrypoint.sh /
+
+ENTRYPOINT [ "/new-entrypoint.sh" ]
