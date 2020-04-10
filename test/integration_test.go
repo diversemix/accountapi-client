@@ -13,7 +13,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/DATA-DOG/godog"
+	"github.com/cucumber/godog"
 	"github.com/diversemix/accountapi-client/accountclient"
 	"github.com/diversemix/accountapi-client/accountclient/entities"
 	"github.com/google/uuid"

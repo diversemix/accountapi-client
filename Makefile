@@ -28,7 +28,7 @@ bdd-tests:		## Runs the BDD tests locally
 	@echo "---------------------------------------- Running BDD Tests"
 	@echo
 	curl -f -s "${URL_UNDER_TEST}/v1/health"
-	go get github.com/DATA-DOG/godog/cmd/godog
+	go get github.com/cucumber/godog/cmd/godog
 	cd test ; godog *.feature
 	@echo
 	@echo "!!! ALL TESTS GOOD !!!"
